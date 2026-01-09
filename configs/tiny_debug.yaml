@@ -1,0 +1,45 @@
+# Tiny Debug Configuration
+# Small-scale configuration for quick testing
+
+method: "RB-LoRA"
+reduction_method: "svd"
+
+# Model and data
+global_model: "gpt2"  # Small model for testing
+data_path: "./data"
+output_dir: "./outputs/debug"
+
+# Federated learning (reduced for testing)
+num_clients: 2
+num_communication_rounds: 2
+client_selection_strategy: "random"
+client_selection_frac: 1.0
+
+# Local training (reduced for testing)
+local_batch_size: 8
+local_micro_batch_size: 4
+local_num_epochs: 1
+local_learning_rate: 5e-5
+local_val_set_size: 0
+cutoff_len: 256
+
+# LoRA configuration
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules: ["c_attn"]  # GPT-2 compatible
+
+# LLM configuration
+train_on_inputs: true
+group_by_length: false
+prompt_template_name: "alpaca"
+hf_token_json: null
+
+# Client configurations (minimal for testing)
+client_lora_rank_dict:
+  client_0: 4
+  client_1: 8
+
+client_dataset_size_dict:
+  client_0: 10
+  client_1: 10
+

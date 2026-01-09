@@ -1,0 +1,62 @@
+# Uniform HETLoRA Configuration
+# Baseline: Uniform averaging with zero-padding
+
+method: "Uniform HETLoRA"
+reduction_method: "truncate"  # Can use truncate or svd
+
+# Model and data
+global_model: "meta-llama/Llama-3.1-8B"
+data_path: "./data"
+dev_data_path: "./mmlu_test_1444.jsonl"
+output_dir: "./outputs/uniform_hetlora"
+
+# Federated learning
+num_clients: 10
+num_communication_rounds: 50
+client_selection_strategy: "random"
+client_selection_frac: 1.0
+
+# Local training
+local_batch_size: 32
+local_micro_batch_size: 16
+local_num_epochs: 1
+local_learning_rate: 2e-5
+local_val_set_size: 0
+cutoff_len: 512
+
+# LoRA configuration
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules: ["q_proj", "v_proj"]
+
+# LLM configuration
+train_on_inputs: true
+group_by_length: true
+prompt_template_name: "alpaca"
+hf_token_json: "./HF_key.json"
+
+# Client configurations
+client_lora_rank_dict:
+  client_0: 4
+  client_1: 4
+  client_2: 16
+  client_3: 16
+  client_4: 64
+  client_5: 64
+  client_6: 128
+  client_7: 128
+  client_8: 256
+  client_9: 256
+
+client_dataset_size_dict:
+  client_0: 500
+  client_1: 500
+  client_2: 1000
+  client_3: 1000
+  client_4: 1500
+  client_5: 1500
+  client_6: 1900
+  client_7: 1900
+  client_8: 2500
+  client_9: 2500
+

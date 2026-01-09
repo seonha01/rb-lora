@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Environments
+.venv/
+venv/
+env/
+*.conda
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & outputs
+logs/
+outputs/
+wandb/
+runs/
+
+# Model checkpoints / large files (필요하면)
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+
+# Data (필요하면)
+data/
+datasets/
