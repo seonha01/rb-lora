@@ -15,7 +15,7 @@ https://seonha01.github.io/rb-lora/
 The implementation and experimental code are maintained in a **separate repository**:
 
 👉 **Code repository:**  
-https://github.com/seonha01/rb-lora-code
+https://github.com/seonha01/rb-lora
 
 ---
 
