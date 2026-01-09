@@ -135,10 +135,7 @@ If you find this code useful, please cite our paper:
 
 ```bibtex
 @inproceedings{ha2026rblora,
-  title     = {RB-LoRA: Rank-Balanced Aggregation for Low-Rank Adaptation with Federated Fine-Tuning},
-  author    = {Ha, Sihyeon and Oh, Yongjeong and Jeon, Yo-Seb},
-  booktitle = {Findings of the Association for Computational Linguistics (EACL)},
-  year      = {2026}
+TBD
 }
 ```
 
