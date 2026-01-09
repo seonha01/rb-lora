@@ -1,5 +1,6 @@
 # RB-LoRA
-![Uploading overview.png…]()
+<img width="5496" height="2358" alt="overview" src="https://github.com/user-attachments/assets/2cf311c8-c81e-4732-a88a-460aeb4b7d40" />
+
 
 **RB-LoRA** is the official PyTorch implementation of  
 **“RB-LoRA: Rank-Balanced Aggregation for Low-Rank Adaptation with Federated Fine-Tuning”**  
