@@ -1,18 +1,62 @@
 # RB-LoRA
 
-Rank-Based LoRA Aggregation for Federated Learning with Heterogeneous LoRA Ranks.
+**RB-LoRA** is the official PyTorch implementation of  
+**“RB-LoRA: Rank-Balanced Aggregation for Low-Rank Adaptation with Federated Fine-Tuning”**  
+(*to appear in Findings of EACL 2026*).
+
+📄 **Project Page:** https://seonha01.github.io/rb-lora/
+
+This repository provides a clean and reproducible framework for federated fine-tuning
+with **heterogeneous LoRA ranks**, and implements several aggregation baselines
+alongside the proposed **rank-balanced aggregation** method.
+
+---
+
+## Overview
+
+In federated LoRA, clients often adopt **different adapter ranks** due to heterogeneous
+device and data constraints.  
+Naïve aggregation strategies (e.g., zero-padding, replication, or stacking) can introduce
+bias or inefficiency when reconciling such heterogeneous updates.
+
+RB-LoRA addresses this issue by:
+- decomposing LoRA updates into **rank-wise components**, and
+- aggregating them using **analytically derived, rank-balanced weights**.
+
+The framework supports both **language models and vision transformers**, and is designed
+to be easily extensible to new aggregation strategies.
+
+---
+
+## Installation
+
+We recommend using a dedicated conda environment.
+
+```bash
+conda env create -f environment.yml
+conda activate rblora
+````
+
+---
 
 ## Quick Start
 
-All commands should be run from the `rb_lora/` directory.
+All commands should be executed from the repository root (`rb_lora/`).
 
-### 1. Prepare Data
+### 1. Prepare Federated Data
+
+The following command generates a federated split with
+10 clients and a non-IID setting (example configuration):
 
 ```bash
 python prepare_data.py 10 2
 ```
 
-### 2. Train
+This will create a `./data/` directory containing client-local datasets.
+
+---
+
+### 2. Federated Training with RB-LoRA
 
 ```bash
 python train.py \
@@ -28,19 +72,95 @@ python train.py \
     --group_by_length
 ```
 
-## Available Methods
+The aggregated global LoRA adapters and evaluation results will be saved under
+`./outputs/rb_lora/`.
 
-- **RB-LoRA**: SVD-based rank reduction
-- **Uniform HETLoRA**: Uniform averaging with zero-padding
-- **Weighted HETLoRA**: Dataset-size weighted averaging with zero-padding
-- **FLoRA**: Stacking (concatenation) along rank dimension
+---
 
-## Paths
+## Implemented Aggregation Methods
 
-All paths are relative to the `rb_lora/` directory:
-- Data: `./data/`
-- Output: `./outputs/`
-- Templates: `templates/`
-- Configs: `configs/`
+The following aggregation strategies are implemented in a unified interface:
 
-For detailed usage, see `COMMANDS.md`.
+* **RB-LoRA**
+  Rank-balanced aggregation with rank-wise decomposition and SVD-based projection
+  (proposed method).
+
+* **Uniform HETLoRA**
+  Uniform averaging after zero-padding all adapters to the maximum rank.
+
+* **Weighted HETLoRA**
+  Dataset-size–weighted averaging with zero-padding.
+
+* **FLoRA**
+  Stacking (concatenation) of LoRA adapters along the rank dimension, followed by
+  rank reduction.
+
+All methods can be selected via the `--method` argument.
+
+---
+
+## Directory Structure
+
+All paths below are relative to the repository root (`rb_lora/`):
+
+```
+rb_lora/
+├── aggregation.py        # Aggregation logic
+├── train.py              # Federated training loop
+├── client.py             # Client-side training
+├── prepare_data.py       # Federated data preparation
+├── configs/              # YAML configs for experiments
+├── templates/            # Prompt templates
+├── data/                 # Federated datasets (generated)
+├── outputs/              # Training outputs and checkpoints
+└── scripts/              # Example training scripts
+```
+
+---
+
+## Reproducing Paper Results
+
+The configurations used in the paper are provided under `configs/`.
+For detailed experiment commands and ablation settings, please refer to:
+
+```
+COMMANDS.md
+```
+
+---
+
+## Citation
+
+If you find this code useful, please cite our paper:
+
+```bibtex
+@inproceedings{ha2026rblora,
+  title     = {RB-LoRA: Rank-Balanced Aggregation for Low-Rank Adaptation with Federated Fine-Tuning},
+  author    = {Ha, Sihyeon and Oh, Yongjeong and Jeon, Yo-Seb},
+  booktitle = {Findings of the Association for Computational Linguistics (EACL)},
+  year      = {2026}
+}
+```
+
+---
+
+## License
+
+This project is released under the MIT License.
+
+```
+
+---
+
+### 👍 이 README의 장점 요약
+- 프로젝트 페이지 링크가 **상단에 명확**
+- “논문 → 아이디어 → 실행 → 재현” 흐름이 자연스러움
+- Public 전환 / arXiv 공개 / camera-ready 이후에도 그대로 사용 가능
+
+다음으로 원하면:
+- 🔹 GitHub **Description / Topics** 문구 추천  
+- 🔹 프로젝트 페이지(`rb-lora`)에서 **Code 버튼 문구** 정리  
+- 🔹 Public 전환 직전 **release checklist**
+
+중 하나 바로 이어서 도와줄게.
+```
