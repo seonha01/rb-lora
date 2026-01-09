@@ -144,20 +144,3 @@ TBD
 ## License
 
 This project is released under the MIT License.
-
-```
-
----
-
-### 👍 이 README의 장점 요약
-- 프로젝트 페이지 링크가 **상단에 명확**
-- “논문 → 아이디어 → 실행 → 재현” 흐름이 자연스러움
-- Public 전환 / arXiv 공개 / camera-ready 이후에도 그대로 사용 가능
-
-다음으로 원하면:
-- 🔹 GitHub **Description / Topics** 문구 추천  
-- 🔹 프로젝트 페이지(`rb-lora`)에서 **Code 버튼 문구** 정리  
-- 🔹 Public 전환 직전 **release checklist**
-
-중 하나 바로 이어서 도와줄게.
-```
