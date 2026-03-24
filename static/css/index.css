@@ -133,7 +133,6 @@ body {
   font-size: smaller;
 }
 
-button:hover {
-  background: rgba(0,0,0,0.7) !important;
+button i {
+  transition: all 0.2s ease;
 }
-
