@@ -20,11 +20,17 @@ $(document).ready(function() {
 
 })
 
-
 function copyBibtex(event) {
     const btn = event.currentTarget;
     const icon = btn.querySelector("i");
-    const text = document.getElementById("bibtex-block").innerText;
+    const el = document.getElementById("bibtex-block");
+
+    if (!el) {
+        console.error("bibtex-block not found");
+        return;
+    }
+
+    const text = el.innerText;
 
     function showSuccess() {
         icon.classList.remove("fa-copy");
@@ -36,9 +42,8 @@ function copyBibtex(event) {
         }, 1500);
     }
 
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(showSuccess);
-    } else {
+    try {
+        // 🔥 강제 fallback (이게 핵심)
         const textarea = document.createElement("textarea");
         textarea.value = text;
         document.body.appendChild(textarea);
@@ -47,5 +52,8 @@ function copyBibtex(event) {
         document.body.removeChild(textarea);
 
         showSuccess();
+
+    } catch (err) {
+        console.error("Copy failed", err);
     }
 }
