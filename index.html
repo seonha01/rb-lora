@@ -428,11 +428,13 @@ for Decision Making), and POSCO Creative Ideas grant (2023Q024, 2023Q032).
       <h2 class="title">BibTeX</h2>
     <div style="position: relative;">
       <!-- Copy button -->
-      <button onclick="copyBibtex()" 
-              style="position: absolute; top: 10px; right: 10px; 
-                     background: #363636; color: white; 
-                     border: none; padding: 6px 10px; 
-                     border-radius: 6px; cursor: pointer;">
+      <button onclick="copyBibtex(event)" 
+              style="position: absolute; top: 10px; right: 10px;
+                     background: rgba(0,0,0,0.5); color: white;
+                     border: none; padding: 6px 10px;
+                     border-radius: 6px; cursor: pointer;
+                     backdrop-filter: blur(4px);
+                     transition: background 0.2s;">
         Copy
       </button>
       <pre><code>@inproceedings{ha-etal-2026-rb,
