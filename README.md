@@ -41,4 +41,3 @@ Please refer to the **project webpage** for:
   pages={1737--1746},
   year={2026}
 }
-}
