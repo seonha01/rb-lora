@@ -34,5 +34,11 @@ Please refer to the **project webpage** for:
 ## 📄 Citation
 
 ```bibtex
-TBD
+@inproceedings{ha2026rb,
+  title={RB-LoRA: Rank-Balanced Aggregation for Low-Rank Adaptation with Federated Fine-Tuning},
+  author={Ha, Sihyeon and Oh, Yongjeong and Jeon, Yo-Seb},
+  booktitle={Findings of the Association for Computational Linguistics: EACL 2026},
+  pages={1737--1746},
+  year={2026}
+}
 }
